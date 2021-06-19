@@ -7,7 +7,6 @@ namespace OlifransSendMail.Models
 {
     public class MensagenEmail
     {
-        //public string Para { get; set; }
         public List<string> Para { get; set; }
         public List<string> Cc { get; set; }
         public string Assunto { get; set; }

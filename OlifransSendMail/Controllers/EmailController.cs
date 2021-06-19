@@ -25,23 +25,6 @@ namespace OlifransSendMail.Controllers
                 Email email = new Email();
                 toMailAdress = GetValidMail(mensagenEmail.Para);
 
-                /* //if (!string.IsNullOrEmpty(mensagenEmail.Para))
-                if (mensagenEmail.Para.Any())
-                {
-                    //var mails = mensagenEmail.Para.Split(',');                   
-                    //foreach (var mail in mails)
-                    foreach (var mail in mensagenEmail.Para)
-                    {
-                        bool isValid = email.IsValidEmail(mail);
-                        if (isValid)
-                        {
-                            emailAdresses.Add(mail);
-                        }
-                    }
-                } */
-
-
-
                 string msg = "Falha ao enviar email.";
                 
                 bool isSend = email.SendEmail(toMailAdress, CredencialEmail.Email, CredencialEmail.Password, mensagenEmail.Assunto,
