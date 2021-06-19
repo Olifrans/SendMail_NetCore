@@ -16,19 +16,30 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Para" class="control-label"></label>
-                <input asp-for="Para" class="form-control" />
+                @*<input asp-for="Para" class="form-control" />*@
+                <select asp-for="Para" class="form-control" multiple="multiple"></select>
                 <span asp-validation-for="Para" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Cc" class="control-label"></label>
+                @*<input asp-for="Para" class="form-control" />*@
+                <select asp-for="Cc" class="form-control" multiple="multiple"></select>
+                <span asp-validation-for="Cc" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Assunto" class="control-label"></label>
                 <input asp-for="Assunto" class="form-control" />
                 <span asp-validation-for="Assunto" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="CorpoEmail" class="control-label"></label>
                 <input asp-for="CorpoEmail" class="form-control" />
                 <span asp-validation-for="CorpoEmail" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Enviar-Email" class="btn btn-primary" />
             </div>
@@ -41,5 +52,20 @@
 </div>
 
 @section Scripts {
+
+ @*Adcionar multiplo email ao campo para*@
+<script>
+    $(document).ready(function () {
+       /* $('.js-example-basic-multiple').select2();*/
+        $('#Para').select2({
+            tags : true
+        });
+
+        $('#Cc').select2({
+            tags: true
+        });
+    });
+</script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

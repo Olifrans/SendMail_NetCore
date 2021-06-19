@@ -21,23 +21,29 @@ namespace OlifransSendMail.Controllers
         {
             try
             {
-                List<string>emailAdresses = new List<string>();
+                List<string>toMailAdress = new List<string>();
                 Email email = new Email();
 
-
-                if (!string.IsNullOrEmpty(mensagenEmail.Para))
+                /* //if (!string.IsNullOrEmpty(mensagenEmail.Para))
+                if (mensagenEmail.Para.Any())
                 {
-                    var mails = mensagenEmail.Para.Split(',');
-                    foreach (var mail in mails)
+                    //var mails = mensagenEmail.Para.Split(',');                   
+                    //foreach (var mail in mails)
+                    foreach (var mail in mensagenEmail.Para)
                     {
-                        bool isValid = mail.IsValidEmail(mail);
-                        //bool isValid = mail.IsValidEmail(mail);
+                        bool isValid = email.IsValidEmail(mail);
+                        if (isValid)
+                        {
+                            emailAdresses.Add(mail);
+                        }
                     }
-                }
-                string msg = "Falha ao enviar email.";
+                } */
 
-             
-                bool isSend = email.SendEmail(mensagenEmail.Para, CredencialEmail.Email, CredencialEmail.Senha, mensagenEmail.Assunto,
+
+
+                string msg = "Falha ao enviar email.";
+                
+                bool isSend = email.SendEmail(toMailAdress, CredencialEmail.Email, CredencialEmail.Password, mensagenEmail.Assunto,
                     mensagenEmail.CorpoEmail);
                 
                 if (true)
@@ -51,10 +57,32 @@ namespace OlifransSendMail.Controllers
             {
                 Console.WriteLine(fr);
                 throw;
-                //Less secure apps - Sign in - Google Accounts
+                
             }
-
-
         }
+
+
+        public List<string> GetValidMail(List<string> mails)
+        {
+            List<string>validMails = new List<string>();
+            Email email = new Email();
+
+            if (mails.Any())
+            {
+                foreach (var mail in mails)
+                {
+                    bool isValid = email.IsValidEmail(mail);
+                    if (isValid)
+                    {
+                        validMails.Add(mail);
+                    }
+                }              
+            }
+            return validMails;
+        }
+
+        //Suport
+        //Less secure apps - Sign in - Google Accounts - permissão aap google
+        //https://select2.org/ 
     }
 }
