@@ -1,0 +1,45 @@
+﻿@model OlifransSendMail.Models.MensagenEmail
+
+@{
+    ViewData["Title"] = "Enviar";
+}
+
+<h1>Enviar</h1>
+
+<h4>MensagenEmail</h4>
+@if (ViewBag.Msg != null) { <h4>@ViewBag.Msg</h4>}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Enviar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Para" class="control-label"></label>
+                <input asp-for="Para" class="form-control" />
+                <span asp-validation-for="Para" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assunto" class="control-label"></label>
+                <input asp-for="Assunto" class="form-control" />
+                <span asp-validation-for="Assunto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorpoEmail" class="control-label"></label>
+                <input asp-for="CorpoEmail" class="form-control" />
+                <span asp-validation-for="CorpoEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enviar-Email" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
