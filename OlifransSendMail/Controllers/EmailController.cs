@@ -23,6 +23,7 @@ namespace OlifransSendMail.Controllers
             {
                 List<string>toMailAdress = new List<string>();
                 Email email = new Email();
+                toMailAdress = GetValidMail(mensagenEmail.Para);
 
                 /* //if (!string.IsNullOrEmpty(mensagenEmail.Para))
                 if (mensagenEmail.Para.Any())
